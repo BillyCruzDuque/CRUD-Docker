@@ -1,6 +1,6 @@
 import {pool} from "../db.js";
 
-const empleadoExiste = async (nombre = '') => {
+export const empleadoExiste = async (nombre = '') => {
     const [rows] = await pool.query('SELECT * FROM empleados WHERE nombre = ?', [nombre]);
 
     if (rows.length > 0) {
@@ -8,7 +8,7 @@ const empleadoExiste = async (nombre = '') => {
     }
 };
 
-const existeUsuarioId  = async (id = '') => {
+export const existeUsuarioId  = async (id = '') => {
 
     const [rows] = await pool.query('SELECT * FROM empleados WHERE id = ?', [id]);
 
@@ -17,7 +17,3 @@ const existeUsuarioId  = async (id = '') => {
     }
 };
 
-module.exports = {
-    empleadoExiste,
-    existeUsuarioId
-};

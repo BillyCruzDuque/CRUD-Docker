@@ -13,6 +13,8 @@ import {
     getEmployee
 } from "../controllers/employees.controller.js";
 
+import {existeUsuarioId, empleadoExiste} from "../helpers/db-validators.js";
+
 const router = Router();
 
 router.get('/employees', getEmployees);
@@ -20,6 +22,7 @@ router.get('/employees', getEmployees);
 router.get('/employees/:id', [
     [
         check('id', "El id no es válido").isInt(),
+        check('id').custom(existeUsuarioId),
         validarCampos
     ],
 ], getEmployee);
@@ -29,6 +32,7 @@ router.post('/employees',
         check('nombre', 'El nombre es requerido').not().isEmpty(),
         check('salario', 'El salario es requerido').not().isEmpty(),
         check('salario', 'El salario debe ser un número').isNumeric(),
+        check('nombre').custom(empleadoExiste),
         validarCampos
     ],
     createEmployee);
@@ -36,6 +40,8 @@ router.post('/employees',
 router.patch('/employees/:id',
     [
         check('id', "El id no es válido").isInt(),
+        check('id').custom(existeUsuarioId),
+        check('nombre').custom(empleadoExiste),
         validarCampos
     ],
     updateEmployee);
@@ -43,6 +49,7 @@ router.patch('/employees/:id',
 router.delete('/employees/:id',
     [
       check('id', "El id no es válido").isInt(),
+        check('id').custom(existeUsuarioId),
         validarCampos
     ],
     deleteEmployee);

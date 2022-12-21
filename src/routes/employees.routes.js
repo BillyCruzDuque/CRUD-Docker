@@ -22,19 +22,29 @@ router.get('/employees/:id', [
         check('id', "El id no es válido").isInt(),
         validarCampos
     ],
-
-
 ], getEmployee);
 
 router.post('/employees',
     [
-        check('nombre', 'Name is required').not().isEmpty(),
+        check('nombre', 'El nombre es requerido').not().isEmpty(),
+        check('salario', 'El salario es requerido').not().isEmpty(),
+        check('salario', 'El salario debe ser un número').isNumeric(),
         validarCampos
     ],
     createEmployee);
 
-router.patch('/employees/:id', updateEmployee);
+router.patch('/employees/:id',
+    [
+        check('id', "El id no es válido").isInt(),
+        validarCampos
+    ],
+    updateEmployee);
 
-router.delete('/employees/:id', deleteEmployee);
+router.delete('/employees/:id',
+    [
+      check('id', "El id no es válido").isInt(),
+        validarCampos
+    ],
+    deleteEmployee);
 
 export default router;

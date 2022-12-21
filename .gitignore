@@ -1,3 +1,4 @@
 db_mysql
 node_modules
-.idea
+.idea/
+.idea/dataSources.local.xml

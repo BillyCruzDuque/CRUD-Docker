@@ -1,5 +1,5 @@
 import Router from 'express';
-import {postTipoMuestra} from "../controllers/laboratorio.controller.js";
+import {getTipoMuestra, postTipoMuestra} from "../controllers/laboratorio.controller.js";
 
 
 const router = Router();

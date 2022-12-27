@@ -10,4 +10,9 @@ router.post(
     postTipoMuestra
 )
 
+router.get(
+    '/laboratorio',
+    getTipoMuestra
+)
+
 export default router;

@@ -29,3 +29,19 @@ export const postTipoMuestra = async (req, res) => {
 
 
 }
+
+export const getTipoMuestra = async (req, res) => {
+    try{
+        const [rows] = await pool.query('SELECT * FROM tipo_muestra');
+        res.status(200).json({
+            ok: true,
+            msg: 'Tipo de muestra',
+            data: rows
+        });
+    }catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: 'Error inesperado - laboratorio',
+        });
+    }
+}
